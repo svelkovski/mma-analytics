@@ -1,0 +1,36 @@
+<section class="bg-gray-900 relative overflow-hidden">
+  <div
+    class="absolute inset-0 bg-[repeating-linear-gradient(45deg,#111111_0_1px,transparent_0_40px)] opacity-20"
+  ></div>
+
+  <div
+    class="absolute inset-0 bg-gradient-to-b from-gray-900/80 to-gray-950/90"
+  ></div>
+
+  <div class="relative max-w-7xl mx-auto px-8 py-16">
+    <div class="grid grid-cols-3 gap-8">
+      <div
+        class="bg-gray-800 p-6 rounded-xl shadow-xl text-center border border-gray-700 hover:border-accentRed/40 transition-all"
+      >
+        <h3 class="text-gray-400 mb-2">Active Fighters</h3>
+        <p class="text-3xl font-bold text-white">{{ activeFighters }}</p>
+      </div>
+
+      <div
+        class="bg-gray-800 p-6 rounded-xl shadow-xl text-center border border-gray-700 hover:border-accentRed/40 transition-all"
+      >
+        <h3 class="text-gray-400 mb-2">Most Dominant</h3>
+        <p class="text-2xl font-semibold text-white">{{ dominantFighter }}</p>
+        <p class="text-accentRed text-sm mt-1">{{ winRate }}% Win Rate</p>
+      </div>
+
+      <div
+        class="bg-gray-800 p-6 rounded-xl shadow-xl text-center border border-gray-700 hover:border-accentRed/40 transition-all"
+      >
+        <h3 class="text-gray-400 mb-2">Most Wins</h3>
+        <p class="text-2xl font-semibold text-white">{{ mostWinsFighter }}</p>
+        <p class="text-accentRed text-sm mt-1">{{ wins }} Wins</p>
+      </div>
+    </div>
+  </div>
+</section>
