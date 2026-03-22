@@ -14,8 +14,15 @@ export class RankingsService {
   rankings$ = this.rankingsSubject.asObservable();
 
   constructor() {
+    this.loadRankings();
+  }
+
+  private loadRankings() {
     this.httpClient
       .get<Ranking[]>('https://api.octagon-api.com/rankings')
-      .subscribe((rankings) => this.rankingsSubject.next(rankings));
+      .subscribe((rankings) => {
+        console.log(rankings);
+        this.rankingsSubject.next(rankings);
+      });
   }
 }

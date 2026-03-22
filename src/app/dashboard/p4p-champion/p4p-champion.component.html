@@ -1,0 +1,51 @@
+<section class="relative px-8 py-20 bg-gradient-to-r from-red-900 via-gray-900 to-black animate-gradient-x">
+  <div class="text-center mb-12">
+    <h2 class="text-3xl font-bold text-white">
+      Men's Pound-for-Pound Champion
+    </h2>
+  </div>
+
+  <div
+    class="absolute inset-0 bg-[repeating-linear-gradient(45deg,#111111_0_1px,transparent_0_40px)] opacity-10 rounded-2xl"
+  ></div>
+
+  <div
+    class="relative bg-gray-900 rounded-2xl shadow-2xl text-center border border-gray-700 overflow-hidden mx-auto max-w-4xl"
+  >
+    <div
+      class="absolute -top-10 left-1/2 -translate-x-1/2 w-64 h-64 bg-red-600 rounded-full blur-3xl opacity-30 z-0"
+    ></div>
+
+    <div class="relative z-10 p-8">
+      <img
+        [src]="champion()?.imgUrl"
+        [alt]="champion()?.name"
+        class="w-48 h-48 mx-auto rounded-full object-cover object-[50%_5%] object-center border-4 border-gray-800 mb-6 bg-gray-900"
+      />
+
+      <h3 class="text-4xl font-bold text-white mb-2">{{ champion()?.name }}</h3>
+      <p class="text-gray-400 text-lg mb-6">{{ champion()?.category }}</p>
+
+      <div class="flex justify-center gap-12 mb-6">
+        <div>
+          <p class="text-gray-400 text-sm">Wins</p>
+          <p class="text-accentRed text-2xl font-semibold">
+            {{ champion()?.wins }}
+          </p>
+        </div>
+        <div>
+          <p class="text-gray-400 text-sm">Win Rate</p>
+          <p class="text-accentRed text-2xl font-semibold">
+            {{ championWinRate() }}%
+          </p>
+        </div>
+      </div>
+
+      <button
+        class="mt-4 bg-accentRed text-white px-6 py-3 rounded-lg text-lg font-semibold hover:bg-red-600 transition-all"
+      >
+        View Profile →
+      </button>
+    </div>
+  </div>
+</section>

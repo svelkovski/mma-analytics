@@ -29,7 +29,7 @@ export class GeneralStatsComponent {
 
     const dominantFighter = sorted.at(0)!;
 
-    const winRate = this.calculateWinRate(dominantFighter);
+    const winRate = calculateWinRate(dominantFighter);
 
     return { ...dominantFighter, winRate };
   }
@@ -41,8 +41,8 @@ export class GeneralStatsComponent {
 
   private sortByWinRate() {
     return [...this.fighters()].sort((a, b) => {
-      const winRateA = this.calculateWinRate(a);
-      const winRateB = this.calculateWinRate(b);
+      const winRateA = calculateWinRate(a);
+      const winRateB = calculateWinRate(b);
       return winRateB - winRateA;
     });
   }
@@ -52,8 +52,9 @@ export class GeneralStatsComponent {
       return a.wins - b.wins;
     });
   }
+}
 
-  private calculateWinRate(dominantFighter?: Fighter) {
+export function calculateWinRate(dominantFighter?: Fighter) {
     if (!dominantFighter) {
       return 0;
     }
@@ -66,4 +67,3 @@ export class GeneralStatsComponent {
       100
     );
   }
-}
