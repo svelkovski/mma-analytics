@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
+import { FightersService } from '../../fighters/fighters.service';
+import { Fighter } from '../../fighters/fighter.model';
 
 @Component({
   selector: 'app-general-stats',
@@ -8,9 +10,57 @@ import { Component } from '@angular/core';
   styleUrl: './general-stats.component.css',
 })
 export class GeneralStatsComponent {
-  activeFighters = '';
-  dominantFighter = '';
-  winRate = '';
-  mostWinsFighter = '';
-  wins = '';
+  private fightersService = inject(FightersService);
+
+  private fighters = signal<Fighter[]>([]);
+
+  ngOnInit() {
+    this.fightersService.fighters$.subscribe((fighters) => {
+      this.fighters.set(fighters);
+    });
+  }
+
+  activeFighters() {
+    return this.fighters().length;
+  }
+
+  dominantFighter() {
+    const sorted = this.sortByWinRate();
+
+    const dominantFighter = sorted.at(0)!;
+
+    const winRate = this.calculateWinRate(dominantFighter);
+
+    return { ...dominantFighter, winRate };
+  }
+
+  mostWinsFighter() {
+    const sorted = this.sortByWins();
+    return sorted.at(0)!;
+  }
+
+  private sortByWinRate() {
+    return [...this.fighters()].sort((a, b) => {
+      const winRateA = this.calculateWinRate(a);
+      const winRateB = this.calculateWinRate(b);
+      return winRateB - winRateA;
+    });
+  }
+
+  private sortByWins() {
+    return [...this.fighters()].sort((a, b) => {
+      return a.wins - b.wins;
+    });
+  }
+
+  private calculateWinRate(dominantFighter: Fighter) {
+    return (
+      ((2 * dominantFighter.wins + dominantFighter.draws) /
+        (2 *
+          (dominantFighter.wins +
+            dominantFighter.draws +
+            dominantFighter.losses))) *
+      100
+    );
+  }
 }

@@ -13,23 +13,31 @@
         class="bg-gray-800 p-6 rounded-xl shadow-xl text-center border border-gray-700 hover:border-accentRed/40 transition-all"
       >
         <h3 class="text-gray-400 mb-2">Active Fighters</h3>
-        <p class="text-3xl font-bold text-white">{{ activeFighters }}</p>
+        <p class="text-3xl font-bold text-white">{{ activeFighters() }}</p>
       </div>
 
       <div
         class="bg-gray-800 p-6 rounded-xl shadow-xl text-center border border-gray-700 hover:border-accentRed/40 transition-all"
       >
         <h3 class="text-gray-400 mb-2">Most Dominant</h3>
-        <p class="text-2xl font-semibold text-white">{{ dominantFighter }}</p>
-        <p class="text-accentRed text-sm mt-1">{{ winRate }}% Win Rate</p>
+        <p class="text-2xl font-semibold text-white">
+          {{ dominantFighter().name }}
+        </p>
+        <p class="text-accentRed text-sm mt-1">
+          {{ dominantFighter().winRate }}% Win Rate
+        </p>
       </div>
 
       <div
         class="bg-gray-800 p-6 rounded-xl shadow-xl text-center border border-gray-700 hover:border-accentRed/40 transition-all"
       >
         <h3 class="text-gray-400 mb-2">Most Wins</h3>
-        <p class="text-2xl font-semibold text-white">{{ mostWinsFighter }}</p>
-        <p class="text-accentRed text-sm mt-1">{{ wins }} Wins</p>
+        <p class="text-2xl font-semibold text-white">
+          {{ mostWinsFighter().name }}
+        </p>
+        <p class="text-accentRed text-sm mt-1">
+          {{ mostWinsFighter().wins }} Wins
+        </p>
       </div>
     </div>
   </div>
