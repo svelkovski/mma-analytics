@@ -36,7 +36,7 @@ export class GeneralStatsComponent {
 
   mostWinsFighter() {
     const sorted = this.sortByWins();
-    return sorted.at(0)!;
+    return sorted.at(0);
   }
 
   private sortByWinRate() {
@@ -53,7 +53,10 @@ export class GeneralStatsComponent {
     });
   }
 
-  private calculateWinRate(dominantFighter: Fighter) {
+  private calculateWinRate(dominantFighter?: Fighter) {
+    if (!dominantFighter) {
+      return 0;
+    }
     return (
       ((2 * dominantFighter.wins + dominantFighter.draws) /
         (2 *

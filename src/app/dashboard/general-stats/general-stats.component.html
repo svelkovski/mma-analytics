@@ -33,10 +33,10 @@
       >
         <h3 class="text-gray-400 mb-2">Most Wins</h3>
         <p class="text-2xl font-semibold text-white">
-          {{ mostWinsFighter().name }}
+          {{ mostWinsFighter()?.name || "Loading..." }}
         </p>
         <p class="text-accentRed text-sm mt-1">
-          {{ mostWinsFighter().wins }} Wins
+          {{ mostWinsFighter()?.wins || "..." }} Wins
         </p>
       </div>
     </div>
