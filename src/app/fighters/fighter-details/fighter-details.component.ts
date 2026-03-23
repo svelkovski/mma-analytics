@@ -15,4 +15,10 @@ export class FighterDetailsComponent {
   onCloseDetails() {
     this.close.emit(false);
   }
+
+  calculatePercentage(value: number): number {
+    const total =
+      this.fighter().wins + this.fighter().losses + this.fighter().draws;
+    return total > 0 ? Math.round((value / total) * 100) : 0;
+  }
 }

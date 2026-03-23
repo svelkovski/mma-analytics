@@ -2,7 +2,7 @@
   class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm"
 >
   <div
-    class="bg-gray-900 rounded-lg max-w-2xl w-full shadow-xl overflow-hidden transform transition-transform scale-95 animate-scale-in"
+    class="bg-gray-900 rounded-lg max-w-3xl w-full shadow-xl overflow-hidden transform transition-transform scale-95 animate-scale-in"
   >
     <div class="flex justify-between items-center p-4 border-b border-gray-700">
       <h2 class="text-2xl font-bold text-white">{{ fighter().name }}</h2>
@@ -14,50 +14,83 @@
       </button>
     </div>
 
-    <div class="p-4 grid grid-cols-1 md:grid-cols-2 gap-4">
-      <img
-        [src]="fighter().imgUrl"
-        alt="{{ fighter().name }}"
-        class="w-full h-64 object-cover rounded-md md:h-full"
-      />
+    <div class="p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div
+        class="bg-gray-800 p-4 rounded-lg border border-gray-700 flex flex-col gap-2"
+      >
+        <h3 class="text-white font-bold text-lg mb-2">Physical Attributes</h3>
 
-      <div class="text-gray-300 flex flex-col justify-between">
-        <p><span class="font-semibold">Age:</span> {{ fighter().age }}</p>
-        <p>
-          <span class="font-semibold">Category:</span>
-          {{ fighter().category }}
-        </p>
-        <p>
-          <span class="font-semibold">Fighting Style:</span>
-          {{ fighter().fightingStyle }}
-        </p>
-        <p>
-          <span class="font-semibold">Weight:</span> {{ fighter().weight }} kg
-        </p>
-        <p>
-          <span class="font-semibold">Height:</span> {{ fighter().height }} cm
-        </p>
-        <p>
-          <span class="font-semibold">Reach:</span> {{ fighter().reach }} cm
-        </p>
-        <p>
-          <span class="font-semibold">Leg Reach:</span>
-          {{ fighter().legReach }} cm
-        </p>
-        <p>
-          <span class="font-semibold">Record:</span> {{ fighter().wins }}-{{
-            fighter().losses
-          }}-{{ fighter().draws }}
-        </p>
-        <p>
-          <span class="font-semibold">Octagon Debut:</span>
-          {{ fighter().octagonDebut }}
-        </p>
-        <p>
-          <span class="font-semibold">Place of Birth:</span>
-          {{ fighter().placeOfBirth }}
-        </p>
-        <p><span class="font-semibold">Status:</span> {{ fighter().status }}</p>
+        <div class="flex justify-between text-gray-300">
+          <span>Weight:</span>
+          <span class="text-white">{{ fighter().weight }} lbs</span>
+        </div>
+        <div class="flex justify-between text-gray-300">
+          <span>Height:</span>
+          <span class="text-white">{{ fighter().height }} cm</span>
+        </div>
+        <div class="flex justify-between text-gray-300">
+          <span>Reach:</span>
+          <span class="text-white">{{ fighter().reach }} cm</span>
+        </div>
+        <div class="flex justify-between text-gray-300">
+          <span>Style:</span>
+          <span class="text-white">{{ fighter().fightingStyle }}</span>
+        </div>
+        <div class="flex justify-between text-gray-300">
+          <span>Country:</span>
+          <span class="text-white">{{ fighter().placeOfBirth }}</span>
+        </div>
+      </div>
+
+      <div
+        class="bg-gray-800 p-4 rounded-lg border border-gray-700 flex flex-col gap-3"
+      >
+        <h3 class="text-white font-bold text-lg mb-2">Career Statistics</h3>
+
+        <div>
+          <div class="flex justify-between text-gray-300 text-sm mb-1">
+            <span>Wins ({{ fighter().wins }})</span>
+            <span class="text-cyan-400"
+              >{{ calculatePercentage(fighter().wins) }}%</span
+            >
+          </div>
+          <div class="h-2 bg-gray-700 rounded">
+            <div
+              class="h-2 bg-cyan-400 rounded"
+              [style.width.%]="calculatePercentage(fighter().wins)"
+            ></div>
+          </div>
+        </div>
+
+        <div>
+          <div class="flex justify-between text-gray-300 text-sm mb-1">
+            <span>Losses ({{ fighter().losses }})</span>
+            <span class="text-red-500"
+              >{{ calculatePercentage(fighter().losses) }}%</span
+            >
+          </div>
+          <div class="h-2 bg-gray-700 rounded">
+            <div
+              class="h-2 bg-red-500 rounded"
+              [style.width.%]="calculatePercentage(fighter().losses)"
+            ></div>
+          </div>
+        </div>
+
+        <div>
+          <div class="flex justify-between text-gray-300 text-sm mb-1">
+            <span>Draws ({{ fighter().draws }})</span>
+            <span class="text-yellow-400"
+              >{{ calculatePercentage(fighter().draws) }}%</span
+            >
+          </div>
+          <div class="h-2 bg-gray-700 rounded">
+            <div
+              class="h-2 bg-yellow-400 rounded"
+              [style.width.%]="calculatePercentage(fighter().draws)"
+            ></div>
+          </div>
+        </div>
       </div>
     </div>
 
