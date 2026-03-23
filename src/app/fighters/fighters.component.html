@@ -6,6 +6,7 @@
       <div
         class="relative h-80 rounded-lg overflow-hidden cursor-pointer group bg-cover bg-center transition transform hover:scale-105 shadow-lg bg-top"
         [style.background-image]="'url(' + fighter.imgUrl + ')'"
+        (click)="onViewDetails(fighter)"
       >
         <div
           class="absolute inset-0 bg-black/30 group-hover:bg-black/20 transition"
@@ -15,7 +16,11 @@
           class="relative z-10 flex flex-col justify-end h-full p-4 bg-gradient-to-t from-black/60 to-transparent"
         >
           <h3 class="text-white text-xl font-bold">{{ fighter.name }}</h3>
-          <p class="text-gray-400 text-sm italic mb-2">"{{ fighter.nickname }}"</p>
+
+          <p class="text-gray-400 text-sm italic mb-2">
+            {{ fighter.nickname ? '"' + fighter.nickname + '"' : 'No nickname'}} 
+          </p>
+
           <p class="text-gray-300 text-sm">
             {{ fighter.weight }} lbs | {{ fighter.placeOfBirth }}
           </p>
@@ -27,3 +32,10 @@
     }
   </div>
 </section>
+
+@if (isViewingDetails) {
+  <app-fighter-details
+    [fighter]="selectedFighter"
+    (close)="onCloseDetails()"
+  />
+}

@@ -1,1 +1,73 @@
-<p>fighter-details works!</p>
+<div
+  class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm"
+>
+  <div
+    class="bg-gray-900 rounded-lg max-w-2xl w-full shadow-xl overflow-hidden transform transition-transform scale-95 animate-scale-in"
+  >
+    <div class="flex justify-between items-center p-4 border-b border-gray-700">
+      <h2 class="text-2xl font-bold text-white">{{ fighter().name }}</h2>
+      <button
+        (click)="onCloseDetails()"
+        class="text-gray-400 hover:text-white text-2xl"
+      >
+        &times;
+      </button>
+    </div>
+
+    <div class="p-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+      <img
+        [src]="fighter().imgUrl"
+        alt="{{ fighter().name }}"
+        class="w-full h-64 object-cover rounded-md md:h-full"
+      />
+
+      <div class="text-gray-300 flex flex-col justify-between">
+        <p><span class="font-semibold">Age:</span> {{ fighter().age }}</p>
+        <p>
+          <span class="font-semibold">Category:</span>
+          {{ fighter().category }}
+        </p>
+        <p>
+          <span class="font-semibold">Fighting Style:</span>
+          {{ fighter().fightingStyle }}
+        </p>
+        <p>
+          <span class="font-semibold">Height:</span> {{ fighter().height }} cm
+        </p>
+        <p>
+          <span class="font-semibold">Reach:</span> {{ fighter().reach }} cm
+        </p>
+        <p>
+          <span class="font-semibold">Leg Reach:</span>
+          {{ fighter().legReach }} cm
+        </p>
+        <p>
+          <span class="font-semibold">Weight:</span> {{ fighter().weight }} kg
+        </p>
+        <p>
+          <span class="font-semibold">Record:</span> {{ fighter().wins }}-{{
+            fighter().losses
+          }}-{{ fighter().draws }}
+        </p>
+        <p>
+          <span class="font-semibold">Octagon Debut:</span>
+          {{ fighter().octagonDebut }}
+        </p>
+        <p>
+          <span class="font-semibold">Place of Birth:</span>
+          {{ fighter().placeOfBirth }}
+        </p>
+        <p><span class="font-semibold">Status:</span> {{ fighter().status }}</p>
+      </div>
+    </div>
+
+    <div class="flex justify-end p-4 border-t border-gray-700">
+      <button
+        (click)="onCloseDetails()"
+        class="px-4 py-2 bg-red-600 hover:bg-red-500 rounded text-white font-bold"
+      >
+        Close
+      </button>
+    </div>
+  </div>
+</div>
