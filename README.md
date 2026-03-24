@@ -4,7 +4,7 @@
 
 git clone https://github.com/svelkovski/fight-insight.git
 
-cd mma-analytics
+cd fight-insight
 
 ## 2. Install dependencies
 
