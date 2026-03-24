@@ -2,7 +2,6 @@ import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
-import { RankingsService } from './rankings/rankings.service';
 
 @Component({
   selector: 'app-root',
@@ -11,6 +10,4 @@ import { RankingsService } from './rankings/rankings.service';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
-export class AppComponent {
-  private ranking = inject(RankingsService);
-}
+export class AppComponent {}
