@@ -1,1 +1,63 @@
-<p>rankings works!</p>
+<div class="bg-black min-h-screen text-white p-6">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+      @for (division of rankings(); track division.categoryName) {
+        <div
+          class="bg-zinc-900/80 backdrop-blur rounded-2xl p-5 shadow-xl border border-zinc-800 hover:border-zinc-700 transition"
+        >
+          <h2 class="text-red-500 text-sm font-bold uppercase">
+            {{ division.categoryName }}
+          </h2>
+
+          <div
+            class="mt-5 flex items-center gap-4 border-b border-zinc-800 pb-5"
+          >
+            <img
+              [src]="findFighterByName(division.champion.championName)?.imgUrl"
+              class="w-20 h-20 object-cover object-top rounded-full border-2 border-red-500"
+            />
+
+            <div>
+              <p class="text-lg font-semibold leading-tight">
+                {{ division.champion.championName }}
+              </p>
+              <p class="text-xs text-yellow-500 uppercase tracking-wider">
+                Champion
+              </p>
+            </div>
+          </div>
+
+          <div class="mt-4">
+            @for (
+              fighter of division.fighters;
+              track fighter.id;
+              let i = $index
+            ) {
+              <div
+                class="flex justify-between items-center text-sm py-2 px-2 rounded-lg hover:bg-zinc-800 transition"
+              >
+                <div class="flex items-center gap-3">
+                  <span
+                    class="w-5 text-right font-medium"
+                    [ngClass]="{
+                      'text-yellow-400': i === 0,
+                      'text-zinc-300': i === 1,
+                      'text-orange-400': i === 2,
+                      'text-zinc-500': i > 2,
+                    }"
+                  >
+                    {{ i + 1 }}
+                  </span>
+
+                  <span class="text-zinc-200">
+                    {{ fighter.name }}
+                  </span>
+                </div>
+              </div>
+            }
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</div>
