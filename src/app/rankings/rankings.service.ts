@@ -21,7 +21,6 @@ export class RankingsService {
     this.httpClient
       .get<Ranking[]>('https://api.octagon-api.com/rankings')
       .subscribe((rankings) => {
-        console.log(rankings);
         this.rankingsSubject.next(rankings);
       });
   }
