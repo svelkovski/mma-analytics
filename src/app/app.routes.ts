@@ -20,10 +20,15 @@ export const routes: Routes = [
   },
   {
     path: 'rankings',
-    component: RankingsComponent
+    component: RankingsComponent,
   },
   {
     path: 'analysis',
-    component: AnalysisComponent
-  }
+    component: AnalysisComponent,
+  },
+  {
+    path: '**',
+    redirectTo: 'home',
+    pathMatch: 'full',
+  },
 ];
