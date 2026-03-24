@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { FightersComponent } from './fighters/fighters.component';
 import { RankingsComponent } from './rankings/rankings.component';
+import { AnalysisComponent } from './analysis/analysis.component';
 
 export const routes: Routes = [
   {
@@ -20,5 +21,9 @@ export const routes: Routes = [
   {
     path: 'rankings',
     component: RankingsComponent
+  },
+  {
+    path: 'analysis',
+    component: AnalysisComponent
   }
 ];

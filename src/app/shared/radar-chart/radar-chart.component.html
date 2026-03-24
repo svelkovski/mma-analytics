@@ -1,0 +1,39 @@
+<canvas class="max-h-[500px]" id="radarChart"></canvas>
+
+<div class="mt-6 text-sm text-zinc-300">
+  <div class="grid grid-cols-3 gap-2 text-center font-medium text-zinc-400">
+    <div class="text-red-500">{{ fighter1().name }}</div>
+    <div></div>
+    <div class="text-blue-500">{{ fighter2().name }}</div>
+  </div>
+
+  <div class="grid grid-cols-3 gap-2 text-center py-2">
+    <div class="text-white">{{ calculateWinRate(fighter1()) }}%</div>
+    <div class="text-white">Win Rate</div>
+    <div class="text-white">{{ calculateWinRate(fighter2()) }}%</div>
+  </div>
+
+  <div class="grid grid-cols-3 gap-2 text-center py-2">
+    <div class="text-white">{{ fighter1().height }} in</div>
+    <div class="text-white">Height</div>
+    <div class="text-white">{{ fighter2().height }} in</div>
+  </div>
+
+  <div class="grid grid-cols-3 gap-2 text-center py-2">
+    <div>{{ fighter1().weight }} lbs</div>
+    <div>Weight</div>
+    <div>{{ fighter2().weight }} lbs</div>
+  </div>
+
+  <div class="grid grid-cols-3 gap-2 text-center py-2">
+    <div class="text-white">{{ fighter1().reach }} in</div>
+    <div class="text-white">Arm Reach</div>
+    <div class="text-white">{{ fighter2().reach }} in</div>
+  </div>
+
+  <div class="grid grid-cols-3 gap-2 text-center py-2">
+    <div class="text-white">{{ fighter1().legReach }} in</div>
+    <div class="text-white">Leg Reach</div>
+    <div class="text-white">{{ fighter2().legReach }} in</div>
+  </div>
+</div>

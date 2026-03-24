@@ -1,0 +1,112 @@
+<div
+  class="min-h-screen text-white p-6 bg-[radial-gradient(circle_at_center,_#27272a,_#0a0a0a)]"
+>
+  <div class="max-w-6xl mx-auto">
+    <div
+      class="flex flex-col md:flex-row items-center justify-center gap-6 mb-10"
+    >
+      <select
+        class="bg-zinc-900 border border-zinc-700 rounded-lg p-3 w-60"
+        [(ngModel)]="firstSelectedFighter"
+      >
+        <option [ngValue]="null">Select a fighter</option>
+        @for (fighter of fighters(); track fighter.name) {
+          <option [ngValue]="fighter">{{ fighter.name }}</option>
+        }
+      </select>
+
+      <span class="text-red-500 font-bold text-xl">VS</span>
+
+      <select
+        class="bg-zinc-900 border border-zinc-700 rounded-lg p-3 w-60"
+        [(ngModel)]="secondSelectedFighter"
+      >
+        <option [ngValue]="null">Select a fighter</option>
+        @for (fighter of fighters(); track fighter.name) {
+          <option [ngValue]="fighter">{{ fighter.name }}</option>
+        }
+      </select>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+      <div
+        class="flex items-center gap-4 bg-neutral-900 p-5 rounded-2xl border border-zinc-800"
+      >
+        <img
+          class="w-20 h-20 rounded-full object-cover border-2 border-red-500 object-top"
+          [src]="
+            firstSelectedFighter()?.imgUrl || 'images/unselected-fighter.png'
+          "
+        />
+        <div>
+          <h2 class="text-lg font-semibold">
+            @if (firstSelectedFighter()) {
+              {{ firstSelectedFighter()?.name }}
+            } @else {
+              Fighter 1
+            }
+          </h2>
+          <p class="text-sm text-zinc-400">
+            Record:
+            @if (firstSelectedFighter()) {
+              {{
+                firstSelectedFighter()?.wins +
+                  "-" +
+                  firstSelectedFighter()?.losses +
+                  "-" +
+                  firstSelectedFighter()?.draws
+              }}
+            } @else {
+              x-y-z
+            }
+          </p>
+        </div>
+      </div>
+
+      <div
+        class="flex items-center gap-4 bg-neutral-900 p-5 rounded-2xl border border-zinc-800 justify-end text-right"
+      >
+        <div>
+          <h2 class="text-lg font-semibold">
+            @if (secondSelectedFighter()) {
+              {{ secondSelectedFighter()?.name }}
+            } @else {
+              Fighter 2
+            }
+          </h2>
+          <p class="text-sm text-zinc-400">
+            Record:
+            @if (secondSelectedFighter()) {
+              {{
+                secondSelectedFighter()?.wins +
+                  "-" +
+                  secondSelectedFighter()?.losses +
+                  "-" +
+                  secondSelectedFighter()?.draws
+              }}
+            } @else {
+              x-y-z
+            }
+          </p>
+        </div>
+        <img
+          class="w-20 h-20 rounded-full object-cover border-2 border-blue-500 object-top"
+          [src]="
+            secondSelectedFighter()?.imgUrl || 'images/unselected-fighter.png'
+          "
+        />
+      </div>
+    </div>
+
+    <div
+      class="bg-neutral-900 p-6 rounded-2xl border border-zinc-800 shadow-xl"
+    >
+      @if (firstSelectedFighter() && secondSelectedFighter()) {
+        <app-radar-chart
+          [fighter1]="firstSelectedFighter()!"
+          [fighter2]="secondSelectedFighter()!"
+        ></app-radar-chart>
+      }
+    </div>
+  </div>
+</div>
