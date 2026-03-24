@@ -2,7 +2,7 @@
 
 ## 1. Clone the repository
 
-git clone https://github.com/your-username/mma-analytics.git
+git clone https://github.com/svelkovski/fight-insight.git
 
 cd mma-analytics
 
