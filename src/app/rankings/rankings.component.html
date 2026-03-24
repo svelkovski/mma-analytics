@@ -1,9 +1,11 @@
-<div class="bg-black min-h-screen text-white p-6">
+<div
+  class="min-h-screen text-white p-6 bg-[radial-gradient(circle_at_center,_#27272a,_#0a0a0a)]"
+>
   <div class="max-w-7xl mx-auto px-6">
     <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
       @for (division of rankings(); track division.categoryName) {
         <div
-          class="bg-zinc-900/80 backdrop-blur rounded-2xl p-5 shadow-xl border border-zinc-800 hover:border-zinc-700 transition"
+          class="bg-neutral-900 backdrop-blur rounded-2xl p-5 shadow-xl border border-zinc-800 hover:border-zinc-700 transition"
         >
           <h2 class="text-red-500 text-sm font-bold uppercase">
             {{ division.categoryName }}
