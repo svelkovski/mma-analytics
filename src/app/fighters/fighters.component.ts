@@ -1,15 +1,9 @@
-import {
-  Component,
-  computed,
-  DestroyRef,
-  inject,
-  OnInit,
-  signal,
-} from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 import { Fighter } from './fighter.model';
 import { FightersService } from './fighters.service';
 import { FighterDetailsComponent } from './fighter-details/fighter-details.component';
 import { FormsModule } from '@angular/forms';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-fighters',
@@ -18,8 +12,10 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './fighters.component.html',
   styleUrl: './fighters.component.css',
 })
-export class FightersComponent implements OnInit {
-  fighters = signal<Fighter[]>([]);
+export class FightersComponent {
+  private fightersService = inject(FightersService);
+
+  fighters = toSignal(this.fightersService.fighters$, { initialValue: [] });
 
   selectedFighter!: Fighter;
   isViewingDetails = false;
@@ -27,9 +23,6 @@ export class FightersComponent implements OnInit {
   searchFilter = signal('');
   categoryFilter = signal<string | null>(null);
   sortOption = signal<'wins' | 'weight' | 'name' | 'age'>('wins');
-
-  private fightersService = inject(FightersService);
-  private destroyRef = inject(DestroyRef);
 
   filteredFighters = computed(() => {
     let fightersList = this.fighters();
@@ -68,16 +61,6 @@ export class FightersComponent implements OnInit {
 
     return fightersList;
   });
-
-  ngOnInit() {
-    const subscription = this.fightersService.fighters$.subscribe((fighters) =>
-      this.fighters.set(fighters),
-    );
-
-    this.destroyRef.onDestroy(() => {
-      subscription.unsubscribe();
-    });
-  }
 
   onViewDetails(fighter: Fighter) {
     this.selectedFighter = fighter;

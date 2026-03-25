@@ -1,9 +1,10 @@
-import { Component, DestroyRef, inject, OnInit, signal } from '@angular/core';
+import { Component, DestroyRef, inject, signal } from '@angular/core';
 import { RankingsService } from './rankings.service';
 import { Ranking } from './ranking.model';
 import { FightersService } from '../fighters/fighters.service';
 import { Fighter } from '../fighters/fighter.model';
 import { NgClass } from '@angular/common';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-rankings',
@@ -12,32 +13,12 @@ import { NgClass } from '@angular/common';
   templateUrl: './rankings.component.html',
   styleUrl: './rankings.component.css',
 })
-export class RankingsComponent implements OnInit {
+export class RankingsComponent {
   private fightersService = inject(FightersService);
   private rankingsService = inject(RankingsService);
-  private destroyRef = inject(DestroyRef);
 
-  rankings = signal<Ranking[]>([]);
-  fighters = signal<Fighter[]>([]);
-
-  ngOnInit() {
-    const subscription = this.rankingsService.rankings$.subscribe(
-      (rankings) => {
-        this.rankings.set(rankings);
-        const subscription = this.fightersService.fighters$.subscribe(
-          (fighters) => this.fighters.set(fighters),
-        );
-
-        this.destroyRef.onDestroy(() => {
-          subscription.unsubscribe();
-        });
-      },
-    );
-
-    this.destroyRef.onDestroy(() => {
-      subscription.unsubscribe();
-    });
-  }
+  rankings = toSignal(this.rankingsService.rankings$, { initialValue: [] });
+  fighters = toSignal(this.fightersService.fighters$, { initialValue: [] });
 
   findFighterByName(fighterName: string) {
     return this.fighters().find((f) => f.name === fighterName);
