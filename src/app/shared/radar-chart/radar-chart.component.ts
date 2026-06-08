@@ -34,6 +34,11 @@ export class RadarChartComponent implements OnChanges {
 
   chart: any;
 
+  // Lowest point a stat can occupy on the chart (0-100). Raising it compresses
+  // the spread between fighters so small differences look smaller; lowering it
+  // exaggerates them. The polygon always fills at least this much of the radius.
+  private readonly axisFloor = 40;
+
   ngOnChanges() {
     if (this.fighter1() && this.fighter2()) {
       this.createChart();
@@ -134,7 +139,7 @@ export class RadarChartComponent implements OnChanges {
 
     return [
       this.normalize(winRate, 0, 100),
-      this.normalize(fighter.legReach, 35, 50),
+      this.normalize(fighter.legReach, 34, 48),
       this.normalize(fighter.reach, 60, 85),
       this.normalize(fighter.height, 63, 84),
       this.normalize(fighter.weight, 115, 265),
@@ -142,7 +147,9 @@ export class RadarChartComponent implements OnChanges {
   }
 
   normalize(value: number, min: number, max: number): number {
-    return ((value - min) / (max - min)) * 100;
+    const ratio = (value - min) / (max - min);
+    const clamped = Math.max(0, Math.min(1, ratio));
+    return this.axisFloor + (100 - this.axisFloor) * clamped;
   }
 
   calculateWinRate(fighter: Fighter): number {

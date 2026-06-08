@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 import { FightersService } from '../fighters/fighters.service';
 import { Fighter } from '../fighters/fighter.model';
 import { FormsModule } from '@angular/forms';
@@ -19,4 +19,16 @@ export class AnalysisComponent {
 
   firstSelectedFighter = signal<Fighter | null>(null);
   secondSelectedFighter = signal<Fighter | null>(null);
+
+  firstDropdownFighters = computed(() =>
+    this.fighters().filter(
+      (fighter) => fighter.name !== this.secondSelectedFighter()?.name
+    )
+  );
+
+  secondDropdownFighters = computed(() =>
+    this.fighters().filter(
+      (fighter) => fighter.name !== this.firstSelectedFighter()?.name
+    )
+  );
 }
