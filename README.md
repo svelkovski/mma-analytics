@@ -71,7 +71,3 @@ FightInsight consumes the public [Octagon API](https://api.octagon-api.com):
 - `GET /rankings` — divisional rankings
 
 No API key or environment configuration is required.
-
-## License
-
-This project is currently unlicensed. Add a `LICENSE` file if you intend to make reuse terms explicit.
